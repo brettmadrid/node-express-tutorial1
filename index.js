@@ -66,6 +66,28 @@ server.delete("/api/lessons/:id", (req, res) => {
   }
 });
 
+server.get("/api/channels/:id", (req, res) => {
+  const { id } = req.params;
+  const found = channels.find(channel => channel.id === id);
+
+  if (found) {
+    res.status(200).json(found);
+  } else {
+    res.status(404).json({ messsage: "channel does not exist" });
+  }
+});
+
+server.get("/api/lessons/:id", (req, res) => {
+  const { id } = req.params;
+  const found = lessons.find(lesson => lesson.id === id);
+
+  if (found) {
+    res.status(200).json(found);
+  } else {
+    res.status(404).json({ messsage: "lesson not found" });
+  }
+});
+
 server.listen(5000, () => {
   console.log(`\n*** Server Running on http://localhost:${PORT}`);
 });
